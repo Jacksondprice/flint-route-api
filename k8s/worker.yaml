@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flint-route-api-worker
+spec:
+  template:
+    spec:
+      containers:
+        - name: worker
+          image: ghcr.io/jacksondprice/flint-route-api:2.1.0
+          env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: password
